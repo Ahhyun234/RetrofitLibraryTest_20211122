@@ -15,6 +15,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivityLoginBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.utils.ContextUtil
+import com.neppplus.retrofitlibrarytest_20211122.utils.GlobalData
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -124,6 +125,9 @@ class LoginActivity : BaseActivity() {
 //                        토큰값 추출 -> 기기에 저장 (SharedPreferences)
 
                         ContextUtil.setToken(mContext,  basicResponse.data.token)
+//                        로그인한 사함이 누군지 데이터 세팅
+
+                        GlobalData.logInUser = br.data.user
 
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)

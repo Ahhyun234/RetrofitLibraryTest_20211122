@@ -12,6 +12,7 @@ import com.neppplus.retrofitlibrarytest_20211122.R
 import com.neppplus.retrofitlibrarytest_20211122.databinding.FragmentMyProfileBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.utils.ContextUtil
+import com.neppplus.retrofitlibrarytest_20211122.utils.GlobalData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,7 +42,10 @@ class MyProfileFragment : BaseFragment() {
 
     override fun setValues() {
 
-        getMyInfoFromServer()
+//        getMyInfoFromServer()
+
+        binding.txtNickname.text = GlobalData.logInUser!!.nickname
+        Glide.with(mContext).load(GlobalData.logInUser!!.profileImageURL).into(binding.imgProfile)
     }
 
     fun getMyInfoFromServer() {
@@ -56,6 +60,20 @@ class MyProfileFragment : BaseFragment() {
                     binding.txtNickname.text = br.data.user.nickname
                     Glide.with(mContext).load(br.data.user.profileImageURL).into(binding.imgProfile)
 
+                    when(GlobalData.logInUser!!.provider){
+
+                        "facebook"-> {
+                            binding.imgProvider.setImageResource(R.drawable.facebook_logo)
+                            binding.imgProvider.visibility
+                        }
+                        "kakao"-> {
+                            binding.imgProvider.setImageResource(R.drawable.kakao_logo)
+                            binding.imgProvider.visibility
+                        }
+                        else-> {
+                            binding.imgProvider.visibility = View.GONE
+                        }
+                    }
 
                 }
 

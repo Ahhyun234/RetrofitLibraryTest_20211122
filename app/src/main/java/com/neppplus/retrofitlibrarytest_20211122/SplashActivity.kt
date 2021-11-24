@@ -10,6 +10,7 @@ import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivitySplashBindi
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.datas.UserData
 import com.neppplus.retrofitlibrarytest_20211122.utils.ContextUtil
+import com.neppplus.retrofitlibrarytest_20211122.utils.GlobalData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,12 +31,12 @@ class SplashActivity : BaseActivity() {
 
     override fun setValues() {
 
-        var loginUser : UserData? = null
+
         apiService.getRequestMyInfo(ContextUtil.getToken(mContext)).enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
-                if (response.isSuccessful  ){
-                    loginUser = response.body()!!.data.user
+                if (response.isSuccessful ){
+                    GlobalData.logInUser =  response.body()!!.data.user
 
                 }
             }
@@ -50,7 +51,7 @@ class SplashActivity : BaseActivity() {
         myHandler.postDelayed({
             var myIntent : Intent
 
-            if (loginUser != null){
+            if (GlobalData.logInUser != null){
                 myIntent = Intent(mContext,MainActivity::class.java)
 
             }
