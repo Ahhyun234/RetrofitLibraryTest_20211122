@@ -19,10 +19,10 @@ import retrofit2.Response
 class ProductListFragment : BaseFragment() {
 
     lateinit var binding: FragmentProductListBinding
-
-    val mProductList = ArrayList<ProductData>()
-
-    lateinit var mProductAdapter: ProductAdapter
+//
+//    val mProductList = ArrayList<ProductData>()
+//
+//    lateinit var mProductAdapter: ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,38 +45,13 @@ class ProductListFragment : BaseFragment() {
     }
 
     override fun setValues() {
-        getProductListFromServer()
-
-        mProductAdapter = ProductAdapter(mContext, R.layout.product_list_item, mProductList)
-        binding.productListView.adapter = mProductAdapter
-
-    }
-
-    fun getProductListFromServer() {
-
-        apiService.getRequestProductList().enqueue( object : Callback<BasicResponse> {
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-
-                if (response.isSuccessful) {
-
-                    val br = response.body()!!
-
-                    mProductList.clear()
-                    mProductList.addAll(br.data.products)
-
-                    mProductAdapter.notifyDataSetChanged()
-
-                }
-
-            }
-
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-
-            }
-
-        })
+//        getProductListFromServer()
+//
+//        mProductAdapter = ProductAdapter(mContext, R.layout.product_list_item, mProductList)
+//        binding.productListView.adapter = mProductAdapter
 
     }
+
 
 
 }
