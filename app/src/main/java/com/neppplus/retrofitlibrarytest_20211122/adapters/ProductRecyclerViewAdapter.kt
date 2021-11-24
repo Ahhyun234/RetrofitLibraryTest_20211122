@@ -1,5 +1,6 @@
 package com.neppplus.retrofitlibrarytest_20211122.adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,15 @@ class ProductRecyclerViewAdapter(val mContext:Context,val mList:List<ProductData
             
             rootLayout.setOnClickListener{
                 Toast.makeText(mContext, "${data.name} 상품 클릭 됨", Toast.LENGTH_SHORT).show()
+            }
+
+            rootLayout.setOnClickListener {
+                val alert = AlertDialog.Builder(mContext)
+                alert.setTitle("상품 삭제")
+                alert.setMessage("정말 삭제하겠습니ㄸ까")
+                alert.setPositiveButton("확인",null)
+                alert.setNegativeButton("확인",null)
+                alert.show()
             }
         }
 
