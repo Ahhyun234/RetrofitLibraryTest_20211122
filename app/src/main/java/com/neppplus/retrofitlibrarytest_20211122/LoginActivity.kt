@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivityLoginBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
@@ -127,7 +126,7 @@ class LoginActivity : BaseActivity() {
                         ContextUtil.setToken(mContext,  basicResponse.data.token)
 //                        로그인한 사함이 누군지 데이터 세팅
 
-                        GlobalData.logInUser = br.data.user
+                        GlobalData.logInUser = basicResponse.data.user
 
                         val myIntent = Intent(mContext, MainActivity::class.java)
                         startActivity(myIntent)

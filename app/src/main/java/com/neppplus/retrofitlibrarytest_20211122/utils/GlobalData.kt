@@ -6,7 +6,7 @@ class GlobalData {
 
     companion object{
 
-        val logInUser : UserData? = null
+        var logInUser : UserData? = null
 
 
     }
