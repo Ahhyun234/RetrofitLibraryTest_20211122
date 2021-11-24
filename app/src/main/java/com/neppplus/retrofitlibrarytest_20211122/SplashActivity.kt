@@ -48,18 +48,19 @@ class SplashActivity : BaseActivity() {
 
         val myHandler = Handler(Looper.getMainLooper())
         myHandler.postDelayed({
-            val myIntent : Intent
+            var myIntent : Intent
 
             if (loginUser != null){
                 myIntent = Intent(mContext,MainActivity::class.java)
 
             }
             else{
-                myIntent = Intent.parseIntent(mContext,LoginActivity::class.java)
+                myIntent = Intent(mContext, LoginActivity::class.java)
 
                             }
             startActivity(myIntent)
-        })
+            finish()
+        }, 1500)
 
     }
 
