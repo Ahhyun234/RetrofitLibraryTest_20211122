@@ -1,6 +1,8 @@
 package com.neppplus.retrofitlibrarytest_20211122.datas
 
 import com.google.gson.annotations.SerializedName
+import java.text.NumberFormat
+import java.util.*
 
 class ProductData(
 
@@ -19,4 +21,9 @@ class ProductData(
 
 
 ) {
+
+    fun getFormatedPrice(): String{
+
+        return "${ NumberFormat.getInstance(Locale.KOREA).format(this.price) } 원"
+    }
 }

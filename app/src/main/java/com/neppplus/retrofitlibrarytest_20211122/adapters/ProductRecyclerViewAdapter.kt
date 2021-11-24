@@ -14,14 +14,21 @@ import com.neppplus.retrofitlibrarytest_20211122.datas.ProductData
 class ProductRecyclerViewAdapter(val mContext:Context,val mList:List<ProductData>) : RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(view:View) : RecyclerView.ViewHolder(view) {
+        val imgStoreLogo = view.findViewById<ImageView >(R.id.imgStoreLogo)
          val imgProductImage = view.findViewById<ImageView>(R.id.imgProductImage)
         val txtProductName = view.findViewById<TextView>(R.id.txtProductName)
         val txtStoreName = view.findViewById<TextView>(R.id.txtStoreName)
+        val txtProductPrice = view.findViewById<TextView>(R.id.txtProductPrice)
 
         fun bind(data: ProductData){
+
             txtProductName.text = data.store.name
             txtStoreName.text = data.store.name
             Glide.with(mContext).load(data.imageUrl).into(imgProductImage)
+            Glide.with(mContext).load(data.imageUrl).into(imgStoreLogo)
+
+//            상품 데이터에 가격을 가공해주는 함수를 추가해보자 (productData에 추가하고 돌아오기)
+            txtProductPrice.text = data.getFormatedPrice()
         }
 
     }
