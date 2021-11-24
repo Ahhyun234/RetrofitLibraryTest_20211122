@@ -6,50 +6,52 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imgProductImage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgStoreLogo"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:civ_border_width="1dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher"/>
 
         <TextView
             android:id="@+id/txtStoreName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:text="가게이름 자리" />
+            android:text="가게 이름"/>
+
+
+
 
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/txtProductName"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:textSize="16sp"
+        android:text="상품이름"/>
 
-        <TextView
-            android:id="@+id/txtProductName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="상품이름 자리" />
 
-        <TextView
-            android:id="@+id/txtCategoryName"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_height="wrap_content"
-            android:text="(카테고리 자리)" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/txtProductPrice"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="상품가격"/>
 
 
 
