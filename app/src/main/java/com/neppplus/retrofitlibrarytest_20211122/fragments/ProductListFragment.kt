@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.neppplus.retrofitlibrarytest_20211122.R
 import com.neppplus.retrofitlibrarytest_20211122.adapters.ProductAdapter
+import com.neppplus.retrofitlibrarytest_20211122.adapters.ProductRecyclerViewAdapter
 import com.neppplus.retrofitlibrarytest_20211122.databinding.FragmentProductListBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.datas.ProductData
@@ -21,6 +23,8 @@ class ProductListFragment : BaseFragment() {
     lateinit var binding: FragmentProductListBinding
 
     val mProductList = ArrayList<ProductData>()
+
+    lateinit var mProductRecyclerAdapter : ProductRecyclerViewAdapter
 //
 //    val mProductList = ArrayList<ProductData>()
 //
@@ -48,6 +52,10 @@ class ProductListFragment : BaseFragment() {
 
     override fun setValues() {
         getProductListFromServer()
+
+        mProductRecyclerAdapter = ProductRecyclerViewAdapter(mContext,mProductList)
+        binding.productListRecyclerView.adapter = mProductRecyclerAdapter
+        binding.productListRecyclerView.layoutManager = LinearLayoutManager(mContext)
 //
 //        mProductAdapter = ProductAdapter(mContext, R.layout.product_list_item, mProductList)
 //        binding.productListView.adapter = mProductAdapter
@@ -63,6 +71,7 @@ class ProductListFragment : BaseFragment() {
 
                     mProductList.clear()
                     mProductList.addAll(response.body()!!.data.products)
+                    mProductRecyclerAdapter.notifyDataSetChanged()
 
                 }
             }
