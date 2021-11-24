@@ -55,4 +55,9 @@ interface ServerAPIService {
     fun getRequestProductList() : Call<BasicResponse>
 
 
+//    소분류 전체 목록 가져오기
+
+    @GET("/category/small")
+    fun getRequestSmallcategoryList():Call<BasicResponse>
+
 }
