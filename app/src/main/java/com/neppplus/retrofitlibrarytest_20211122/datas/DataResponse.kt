@@ -5,7 +5,7 @@ class DataResponse(
     var token: String,
 
 //    이 변수는 상품 목록에서만 사용.
-    var products: List<ProductData>
+    var products: List<ProductData>,
 
     var categories : List<SmallCategoryData>
 
