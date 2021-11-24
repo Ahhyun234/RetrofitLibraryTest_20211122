@@ -19,6 +19,8 @@ import retrofit2.Response
 class ProductListFragment : BaseFragment() {
 
     lateinit var binding: FragmentProductListBinding
+
+    val mProductList = ArrayList<ProductData>()
 //
 //    val mProductList = ArrayList<ProductData>()
 //
@@ -45,10 +47,32 @@ class ProductListFragment : BaseFragment() {
     }
 
     override fun setValues() {
-//        getProductListFromServer()
+        getProductListFromServer()
 //
 //        mProductAdapter = ProductAdapter(mContext, R.layout.product_list_item, mProductList)
 //        binding.productListView.adapter = mProductAdapter
+
+    }
+
+    fun getProductListFromServer(){
+
+        apiService.getRequestProductList().enqueue(object :Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                if (response.isSuccessful ){
+
+                    mProductList.clear()
+                    mProductList.addAll(response.body()!!.data.products)
+
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+
+        })
+
 
     }
 
