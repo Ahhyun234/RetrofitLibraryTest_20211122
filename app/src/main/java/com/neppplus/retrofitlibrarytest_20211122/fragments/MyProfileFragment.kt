@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -44,12 +45,22 @@ class MyProfileFragment : BaseFragment() {
 //            닉네임 변경 입력(Alert diallog + 커스텀 부) + API 호출
 
             val alert = AlertDialog.Builder(mContext)
-            alert.setMessage("sl")
-            alert.setNegativeButton("확인",DialogInterface.OnClickListener{
-                dialogInterface, i ->
-            })
+            alert.setTitle("닉네임 변경")
+//            xml의 내부 ui 접근 활용 -> Inflate 해와서 사용하자
+
+            val customView = LayoutInflater.from(mContext).inflate(R.layout.my_custom_alert,null)
+            alert.setView(customView)
+
+            val edtNickname = customView.findViewById<EditText>(R.id.edtNickname)
+
+
+            alert.setNegativeButton("취소",null)
+
             alert.setPositiveButton("확인",DialogInterface.OnClickListener {
-                    dialogInterface, i ->  })
+                    dialogInterface, i ->
+
+                val inputNickName = edtNickname.text.toString()
+            })
             alert.show()
 
         }
