@@ -1,5 +1,7 @@
 package com.neppplus.retrofitlibrarytest_20211122.fragments
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -37,6 +39,20 @@ class MyProfileFragment : BaseFragment() {
     }
 
     override fun setupEvents() {
+
+        binding.btnEditProfile.setOnClickListener {
+//            닉네임 변경 입력(Alert diallog + 커스텀 부) + API 호출
+
+            val alert = AlertDialog.Builder(mContext)
+            alert.setMessage("sl")
+            alert.setNegativeButton("확인",DialogInterface.OnClickListener{
+                dialogInterface, i ->
+            })
+            alert.setPositiveButton("확인",DialogInterface.OnClickListener {
+                    dialogInterface, i ->  })
+            alert.show()
+
+        }
 
     }
 
