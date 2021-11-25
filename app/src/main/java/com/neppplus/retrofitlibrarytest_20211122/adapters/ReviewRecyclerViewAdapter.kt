@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.retrofitlibrarytest_20211122.R
 import com.neppplus.retrofitlibrarytest_20211122.datas.ReviewData
+import java.text.SimpleDateFormat
 
 class ReviewRecyclerViewAdapter (val mContext: Context, val mList:List<ReviewData>) : RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder>()  {
 
@@ -19,6 +20,9 @@ class ReviewRecyclerViewAdapter (val mContext: Context, val mList:List<ReviewDat
         val txtReviewProductName   = itemView.findViewById<TextView >(R.id.txtReviewProductName)
         val txtReviewWriterName   = itemView.findViewById<TextView >(R.id.txtReviewWriterName)
         val txtReviewProductRating   = itemView.findViewById<TextView >(R.id.txtReviewProductRating)
+        val txtcreatedAt   = itemView.findViewById<TextView >(R.id.txtcreatedAt)
+
+
 
         fun bind(data: ReviewData ){
 
@@ -27,6 +31,9 @@ class ReviewRecyclerViewAdapter (val mContext: Context, val mList:List<ReviewDat
             txtReviewProductName.text = data.product.name
             txtReviewProductRating.text = data.score.toString()
             txtReviewWriterName.text = data.user.nickname
+
+            val sdf = SimpleDateFormat("yyyy.M.D a H:mm")
+            txtcreatedAt.text = sdf.format(data.createdAt)
 
 
 
