@@ -2,11 +2,13 @@ package com.neppplus.retrofitlibrarytest_20211122.api
 
 import android.content.ContentUris
 import android.content.Context
+import com.google.gson.GsonBuilder
 import com.neppplus.retrofitlibrarytest_20211122.utils.ContextUtil
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class ServerAPI {
 
@@ -47,9 +49,17 @@ class ServerAPI {
                     .addInterceptor(interceptor)
                     .build()
 
+//                2. 서버가 주는 일시를 Date 타입으로 자동 변환하는 세팅 (Gson )세팅
+
+                val gson = GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .registerTypeAdapter(Date::class.java, DateDeserializer() ) //두번째 재료는 실제 파싱 클래스 객체
+                    .create()
+
+
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)  // 어느 서버로 접속?
-                    .addConverterFactory(GsonConverterFactory.create())  // 파싱을 자동 도구로 활용.
+                    .addConverterFactory(GsonConverterFactory.create(gson))  // 파싱을 자동 도구로 활용.
                     .client(myClient)
                     .build()
 

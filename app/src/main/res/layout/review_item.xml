@@ -29,7 +29,7 @@
         android:id="@+id/txtcreatedAt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(2021.11.25 오후 03시25분)"/>
+        android:text="(2021.11.25 오후 03:25)"/>
 
   <LinearLayout
       android:layout_width="match_parent"
