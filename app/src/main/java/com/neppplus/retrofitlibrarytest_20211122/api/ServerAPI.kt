@@ -32,7 +32,7 @@ class ServerAPI {
                 val interceptor = Interceptor{
                     with(it){
                         val newRequest = request().newBuilder()
-                            .addHeader('X-Http-Token', ContextUtil.getToken(context))
+                            .addHeader("X-Http-Token", ContextUtil.getToken(context))
                             .build()
 //                        새 리퀘스트로 나머지 동작 이어가기
                         proceed(newRequest)
