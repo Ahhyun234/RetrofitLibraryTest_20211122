@@ -68,7 +68,7 @@ class ReviewListFragment : BaseFragment() {
 
                 if (response.isSuccessful){
                     mReviewList.clear()
-                    mReviewList.addAll(response.body()!!.data.review)
+                    mReviewList.addAll(response.body()!!.data.reviews)
                     mReviewRecyclerViewAdapter.notifyDataSetChanged()
                 }
             }

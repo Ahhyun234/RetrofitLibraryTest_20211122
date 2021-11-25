@@ -8,7 +8,11 @@ class ReviewData(
     var title : String,
     var content : String,
     var score : Double,
-    var user_id : Int,
+
+//    <이미 있는 데이터 사용하기>
+
+    var user : UserData,
+    var product : ProductData,
 
 ) : Serializable  {
 }
