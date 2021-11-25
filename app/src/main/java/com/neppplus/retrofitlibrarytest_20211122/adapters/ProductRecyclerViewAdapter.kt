@@ -6,10 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.neppplus.retrofitlibrarytest_20211122.EditReviewActivity
@@ -25,7 +22,7 @@ class ProductRecyclerViewAdapter(val mContext:Context,val mList:List<ProductData
         val txtProductName = view.findViewById<TextView>(R.id.txtProductName)
         val txtStoreName = view.findViewById<TextView>(R.id.txtStoreName)
         val txtProductPrice = view.findViewById<TextView>(R.id.txtProductPrice)
-        val btnWriteReview = view.findViewById<Butten>(R.id.btnWriteReview)
+        val btnWriteReview = view.findViewById<Button>(R.id.btnWriteReview)
         
 
         fun bind(data: ProductData){
@@ -42,19 +39,21 @@ class ProductRecyclerViewAdapter(val mContext:Context,val mList:List<ProductData
                 Toast.makeText(mContext, "${data.name} 상품 클릭 됨", Toast.LENGTH_SHORT).show()
             }
 
-            rootLayout.setOnClickListener {
+            rootLayout.setOnLongClickListener {
                 val alert = AlertDialog.Builder(mContext)
                 alert.setTitle("상품 삭제")
                 alert.setMessage("정말 삭제하겠습니ㄸ까")
                 alert.setPositiveButton("확인",null)
                 alert.setNegativeButton("확인",null)
                 alert.show()
-                return@setOnClickListener true
+                return @setOnLongClickListener true
             }
-            btnWriteReview.setOnClickLisner{
+            btnWriteReview.setOnClickListener {
 
+//                리뷰 작성 화면 이동
                 val myIntent = Intent(mContext, EditReviewActivity::class.java)
-                startActivity(myIntent)
+                myIntent.putExtra("product", data)
+                mContext.startActivity(myIntent)
 
 
 

@@ -1,6 +1,7 @@
 package com.neppplus.retrofitlibrarytest_20211122.api
 
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
+import com.neppplus.retrofitlibrarytest_20211122.datas.ProductData
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -65,5 +66,15 @@ interface ServerAPIService {
     @Field("field") field:String,
     @Field("value") value : String,
     ): Call<BasicResponse>
+
+//    리뷰 작성
+    @FormUrlEncoded
+    @POST("/review")
+    fun postRequestReview(
+    @Field("product_id") productData: Int,
+    @Field("title") title : String,
+    @Field("content") content : String,
+    @Field("score") rating : Float
+    ) : Call<BasicResponse>
 
 }

@@ -2,6 +2,7 @@ package com.neppplus.retrofitlibrarytest_20211122
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivityEditReviewBinding
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivitySplashBinding
@@ -18,9 +19,23 @@ class EditReviewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this,R.layout.activity_edit_review)
+
+        setupEvents()
+        setValues()
     }
 
     override fun setupEvents() {
+
+        binding.btnWrite.setOnClikLisner{
+
+            val inputTitle = binding.edtReviewTitle.text.toString()
+            val inputContent = binding.edtReviewContent.text.toString()
+            val rating = binding.ratingBar.rating
+            sdf
+
+            val rating = binding.ratingBar.rating
+            Log.d("평점 점수", rating.toString())
+        }
 
     }
 
