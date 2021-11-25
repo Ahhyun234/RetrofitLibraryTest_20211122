@@ -54,8 +54,8 @@ class ReviewListFragment : BaseFragment() {
         getReviewListFromServer()
 
         mReviewRecyclerViewAdapter = ReviewRecyclerViewAdapter(mContext,mReviewList)
-        binding.reviewRecyclerView.adapter = mReviewRecyclerViewAdapter
-        binding.reviewRecyclerView.layoutManager=LinearLayoutManager(mContext)
+        binding.reviewListRecyclerView.adapter = mReviewRecyclerViewAdapter
+        binding.reviewListRecyclerView.layoutManager=LinearLayoutManager(mContext)
 
 
 
@@ -67,8 +67,10 @@ class ReviewListFragment : BaseFragment() {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
                 if (response.isSuccessful){
+
+                    var br = response.body()!!
                     mReviewList.clear()
-                    mReviewList.addAll(response.body()!!.data.reviews)
+                    mReviewList.addAll(br.data.reviews)
                     mReviewRecyclerViewAdapter.notifyDataSetChanged()
                 }
             }

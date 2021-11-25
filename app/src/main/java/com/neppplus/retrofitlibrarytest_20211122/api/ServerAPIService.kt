@@ -77,7 +77,7 @@ interface ServerAPIService {
     @Field("score") rating : Int
     ) : Call<BasicResponse>
 
-//    리뷰 내용 가져오기
+//    전체 리뷰 목록 가져오기
 
     @GET("/review")
     fun getRequestReviewList():Call<BasicResponse>
