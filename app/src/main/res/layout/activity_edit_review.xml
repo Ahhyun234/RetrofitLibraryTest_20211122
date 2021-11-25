@@ -67,9 +67,7 @@
                 android:layout_gravity="center"
                 app:progress_color="#FF0000"/>
 
-            <RatingBar
-                android:layout_width=""
-                android:layout_height=""
+
 
 
         </LinearLayout>

@@ -74,7 +74,12 @@ interface ServerAPIService {
     @Field("product_id") productData: Int,
     @Field("title") title : String,
     @Field("content") content : String,
-    @Field("score") rating : Float
+    @Field("score") rating : Int
     ) : Call<BasicResponse>
+
+//    리뷰 내용 가져오기
+
+    @GET("/review")
+    fun getRequestReviewList():Call<BasicResponse>
 
 }

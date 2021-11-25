@@ -46,7 +46,7 @@ class ProductRecyclerViewAdapter(val mContext:Context,val mList:List<ProductData
                 alert.setPositiveButton("확인",null)
                 alert.setNegativeButton("확인",null)
                 alert.show()
-                return @setOnLongClickListener true
+                return@setOnLongClickListener true
             }
             btnWriteReview.setOnClickListener {
 
