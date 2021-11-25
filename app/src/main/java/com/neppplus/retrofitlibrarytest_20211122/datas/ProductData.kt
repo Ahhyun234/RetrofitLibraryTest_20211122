@@ -1,10 +1,11 @@
 package com.neppplus.retrofitlibrarytest_20211122.datas
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.text.NumberFormat
 import java.util.*
 
-class ProductData(
+class ProductData (
 
     var id: Int,
     var name: String,
@@ -20,7 +21,7 @@ class ProductData(
 
 
 
-) {
+) : Serializable {
 
     fun getFormatedPrice(): String{
 
