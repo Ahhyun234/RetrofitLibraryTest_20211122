@@ -58,4 +58,12 @@ interface ServerAPIService {
     @GET("/category/small")
     fun getRequestSmallcategoryList():Call<BasicResponse>
 
+//    닉네임 변경
+    @FormUrlEncoded
+    @PATCH("/user")
+    fun patchRequestEditUserInfo (
+    @Field("field") field:String,
+    @Field("value") value : String,
+    ): Call<BasicResponse>
+
 }

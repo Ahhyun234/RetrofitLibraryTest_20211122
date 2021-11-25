@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -60,6 +61,30 @@ class MyProfileFragment : BaseFragment() {
                     dialogInterface, i ->
 
                 val inputNickName = edtNickname.text.toString()
+
+                apiService.patchRequestEditUserInfo("nickname",inputNickName).enqueue(object :Callback<BasicResponse>{
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful){
+                            val br = response.body()!!
+//                            토큰값 추출 -> 다시 저장 (사용자 정보가 바꼈으면 토큰이 바꼈을 수 있음)
+
+                            val token = br.data.token
+                            ContextUtil.setToken(mContext,token)
+                            Toast.makeText(mContext, "닉네임 변경 성공", Toast.LENGTH_SHORT).show()
+
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                    }
+
+                })
+
             })
             alert.show()
 
