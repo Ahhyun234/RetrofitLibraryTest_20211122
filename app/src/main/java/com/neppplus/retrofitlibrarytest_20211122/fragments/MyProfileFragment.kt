@@ -17,6 +17,7 @@ import com.neppplus.retrofitlibrarytest_20211122.databinding.FragmentMyProfileBi
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.utils.ContextUtil
 import com.neppplus.retrofitlibrarytest_20211122.utils.GlobalData
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,10 +56,7 @@ class MyProfileFragment : BaseFragment() {
             val edtNickname = customView.findViewById<EditText>(R.id.edtNickname)
 
 
-            alert.setNegativeButton("취소",null)
-
-            alert.setPositiveButton("확인",DialogInterface.OnClickListener {
-                    dialogInterface, i ->
+           alert.setPositiveButton("확인",DialogInterface.OnClickListener {dialogInterface, i ->
 
                 val inputNickName = edtNickname.text.toString()
 
@@ -73,7 +71,22 @@ class MyProfileFragment : BaseFragment() {
 
                             val token = br.data.token
                             ContextUtil.setToken(mContext,token)
+
+                            GlobalData.logInUser = br.data.user
+
                             Toast.makeText(mContext, "닉네임 변경 성공", Toast.LENGTH_SHORT).show()
+
+                            getMyInfoFromServer()
+
+                        }
+                        else{
+
+                            val jsonObj  =  JSONObject(  response.errorBody()!!.string()  )
+                            Log.e("닉네임변경실패", jsonObj.toString())
+
+                            val message = jsonObj.getString("message")
+
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
 
                         }
 
@@ -81,11 +94,14 @@ class MyProfileFragment : BaseFragment() {
 
                     override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 
+
+
                     }
 
                 })
 
             })
+            alert.setNegativeButton("취소",null)
             alert.show()
 
         }
