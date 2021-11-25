@@ -15,12 +15,20 @@ class ReviewRecyclerViewAdapter (val mContext: Context, val mList:List<ReviewDat
     inner class ReviewViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
 
         val txtReviewTitle = itemView.findViewById<TextView>(R.id.txtReviewTitle)
+        val txtReviewContent = itemView.findViewById<TextView>(R.id.txtReviewContent)
+        val txtReviewProductName   = itemView.findViewById<TextView >(R.id.txtReviewProductName)
+        val txtReviewWriterName   = itemView.findViewById<TextView >(R.id.txtReviewWriterName)
+        val txtReviewProductRating   = itemView.findViewById<TextView >(R.id.txtReviewProductRating)
 
         fun bind(data: ReviewData ){
 
             txtReviewTitle.text = data.title
+            txtReviewContent.text = data.content
+            txtReviewProductName.text = data.product.name
+            txtReviewProductRating.text = data.score.toString()
+            txtReviewWriterName.text = data.user.nickname
 
-//           txt와 파싱한 내용 연결
+
 
         }
 
