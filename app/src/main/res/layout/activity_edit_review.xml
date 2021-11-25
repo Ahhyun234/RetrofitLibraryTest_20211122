@@ -94,6 +94,7 @@
             android:singleLine="true"/>
 
         <com.nex3z.flowlayout.FlowLayout
+            app:flRowSpacing="5dp"
             android:id="@+id/tagListLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
