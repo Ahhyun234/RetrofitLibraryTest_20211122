@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "522871185979",
+    "project_id": "retrofitlibrarytest-sammi",
+    "storage_bucket": "retrofitlibrarytest-sammi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522871185979:android:0bbc01d122f9a8178e721e",
+        "android_client_info": {
+          "package_name": "com.neppplus.retrofitlibrarytest_20211122"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522871185979-b3j8gbvu297r3l53t8k6lc235ca04h98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUu_ECIKYbTc9RaSjNKBxxLG9zrbdPDZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522871185979-b3j8gbvu297r3l53t8k6lc235ca04h98.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
