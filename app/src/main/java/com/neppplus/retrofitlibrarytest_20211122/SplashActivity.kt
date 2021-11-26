@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.messaging.FirebaseMessaging
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivitySplashBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.datas.UserData
@@ -31,9 +33,23 @@ class SplashActivity : BaseActivity() {
     override fun setupEvents() {
 
 
+
+
     }
 
     override fun setValues() {
+
+//        //푸쉬용 기기 토큰 발급 요청
+        FirebaseMessaging.getInstance().token.addOnCompleteListener{
+
+            if (it.isSuccessful){
+                val deviToken = it.result
+
+            }
+            Log.d("토큰",it.toString())
+
+
+        }
 
 
         apiService.getRequestMyInfo().enqueue(object : Callback<BasicResponse>{
