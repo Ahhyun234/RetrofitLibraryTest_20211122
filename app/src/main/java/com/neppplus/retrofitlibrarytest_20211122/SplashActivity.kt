@@ -1,7 +1,6 @@
 package com.neppplus.retrofitlibrarytest_20211122
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import com.google.firebase.messaging.FirebaseMessaging
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivitySplashBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
-import com.neppplus.retrofitlibrarytest_20211122.datas.UserData
-import com.neppplus.retrofitlibrarytest_20211122.utils.ContextUtil
 import com.neppplus.retrofitlibrarytest_20211122.utils.GlobalData
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,10 +40,11 @@ class SplashActivity : BaseActivity() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener{
 
             if (it.isSuccessful){
-                val deviToken = it.result
+                val deviceToken = it.result
 
+                Log.d("토큰",deviceToken!!)
             }
-            Log.d("토큰",it.toString())
+
 
 
         }
@@ -68,20 +66,23 @@ class SplashActivity : BaseActivity() {
         })
 
         val myHandler = Handler(Looper.getMainLooper())
-        myHandler.postDelayed({
-            var myIntent : Intent
 
-            if (GlobalData.logInUser != null){
-                myIntent = Intent(mContext,MainActivity::class.java)
+        myHandler.postDelayed( {
 
+            val myIntent: Intent
+
+            if ( GlobalData.logInUser != null ) {
+                myIntent = Intent(mContext, MainActivity::class.java)
             }
-            else{
+            else {
                 myIntent = Intent(mContext, LoginActivity::class.java)
+            }
 
-                            }
             startActivity(myIntent)
+
             finish()
-        }, 1500)
+
+        }, 1500 )
 
     }
 
