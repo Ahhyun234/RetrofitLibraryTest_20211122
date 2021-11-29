@@ -1,7 +1,9 @@
 package com.neppplus.retrofitlibrarytest_20211122.fragments
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,21 +12,27 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.neppplus.retrofitlibrarytest_20211122.R
 import com.neppplus.retrofitlibrarytest_20211122.databinding.FragmentMyProfileBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.utils.ContextUtil
 import com.neppplus.retrofitlibrarytest_20211122.utils.GlobalData
+import com.neppplus.retrofitlibrarytest_20211122.utils.URIPathHelper
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.security.Permission
 
 class MyProfileFragment : BaseFragment() {
 
     lateinit var binding: FragmentMyProfileBinding
+    var REQUEST_FOR_GALLERY =1000
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +49,66 @@ class MyProfileFragment : BaseFragment() {
         setValues()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_FOR_GALLERY){
+            if (resultCode==Activity.RESULT_OK){
+                val selectedImageUri = data?.data!!
+                Log.d("선택된 이미지", selectedImageUri.toString())
+
+//                URI를 실제로 첨부 가능한 파일로 변환해야함
+//                  uri File형태로 변환 -> 그 실제 경로를 추출해서 Retrofit에 첨부할 수 있게 됨
+
+                val file = File(URIPathHelper().getPath(mContext,selectedImageUri))
+
+
+//                파일을 레트로핏에서 첨부가 가능한 Request Body형태로 가공
+
+                val fileRequestBody = RequestBody.create(MediaType.get("image/+"),file)
+//                실제 첨부하는 데이터로 변경
+                val body = MultipartBody.Part.createFormData("profile_image","myFile.jpg",fileRequestBody)
+                apiService.putRequestProfileImage(body).enqueue(object :Callback<BasicResponse>{
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful){
+                            Toast.makeText(mContext, "프로필 사진 변경", Toast.LENGTH_SHORT).show()
+//                            사용자가 선택한 사진을 프로필 사진 뷰에 반영
+                            Glide.with(mContext).load(selectedImageUri).into(binding.imgProfile)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                    }
+
+                })
+
+            }
+        }
+
+    }
     override fun setupEvents() {
+
+        binding.imgProfile.setOnClickListener {
+
+//            실제 파일 경로 읽는 권한 필요(업로드가 가능해짐)
+            val pl = object : PermissionListener {
+                override fun onPermissionGranted() {
+//                갤러리로 사진 가지러 이동
+                val myIntent tnpntpntnp
+            }
+        }
+
+
+//            갤러리(안드로이드 제공) 로 사진 가지로 이동
+            val myIntent = Intent()
+            myIntent.action = Intent.ACTION_PICK
+            myIntent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
+            startActivityForResult(myIntent,REQUEST_FOR_GALLERY )
+        }
 
         binding.btnEditProfile.setOnClickListener {
 //            닉네임 변경 입력(Alert diallog + 커스텀 부) + API 호출

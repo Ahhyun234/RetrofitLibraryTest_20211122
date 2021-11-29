@@ -2,7 +2,9 @@ package com.neppplus.retrofitlibrarytest_20211122.api
 
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.datas.ProductData
+import okhttp3.MultipartBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface ServerAPIService {
@@ -81,5 +83,12 @@ interface ServerAPIService {
 
     @GET("/review")
     fun getRequestReviewList():Call<BasicResponse>
+
+//    프로필 사진 첨부
+    @Multipart
+    @PUT("/user/image")
+    fun putRequestProfileImage(
+    @Part img: MultipartBody.Part
+    ):Callback<BasicResponse>
 
 }

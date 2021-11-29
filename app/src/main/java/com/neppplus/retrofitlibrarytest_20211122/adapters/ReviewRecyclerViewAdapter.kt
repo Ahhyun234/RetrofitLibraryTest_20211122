@@ -10,7 +10,9 @@ import com.neppplus.retrofitlibrarytest_20211122.R
 import com.neppplus.retrofitlibrarytest_20211122.datas.ReviewData
 import java.text.SimpleDateFormat
 
-class ReviewRecyclerViewAdapter (val mContext: Context, val mList:List<ReviewData>) : RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder>()  {
+class ReviewRecyclerViewAdapter
+    (val mContext: Context, val mList:List<ReviewData>)
+    : RecyclerView.Adapter<ReviewRecyclerViewAdapter.ReviewViewHolder>()  {
 
 
     inner class ReviewViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
