@@ -17,6 +17,16 @@ class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : Recy
 //    두가지 뷰홀더가 필요함. -> 0번칸 : 상단부(header) xml / 나머지 칸(item) : 리뷰모양 XML
     inner class headerViewHolder(row:View): RecyclerView.ViewHolder(row){
 
+        val imgCategory1 = row.findViewById<ImageView>(R.id.imgCategory1)
+
+    fun bind(){
+
+        imgCategory1.setOnClickListener {
+
+        }
+    }
+
+
     }
     inner class itemViewHolder(row: View): RecyclerView.ViewHolder(row){
 
@@ -66,6 +76,8 @@ class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : Recy
 
         when(holder){
             is HeaderViewHolder -> {
+
+                holder.bind()
 
 
             }
