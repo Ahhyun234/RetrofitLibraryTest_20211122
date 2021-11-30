@@ -4,22 +4,22 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HeaderViewListAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.neppplus.retrofitlibrarytest_20211122.GlobalApplication
+import androidx.viewpager.widget.ViewPager
 import com.neppplus.retrofitlibrarytest_20211122.R
 import com.neppplus.retrofitlibrarytest_20211122.datas.ReviewData
 
-class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainRecyclerViewAdapter(val mContext : Context , val mList : List<ReviewData> ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //    두가지 뷰홀더가 필요함. -> 0번칸 : 상단부(header) xml / 나머지 칸(item) : 리뷰모양 XML
     inner class headerViewHolder(row:View): RecyclerView.ViewHolder(row){
 
         val imgCategory1 = row.findViewById<ImageView>(R.id.imgCategory1)
+        val bannerViewPager = row.findViewById<ViewPager>(R.id.bannerViewPager)
 
     fun bind(){
+//        bannerViewPager.adapter =
 
         imgCategory1.setOnClickListener {
 
@@ -75,13 +75,13 @@ class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : Recy
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when(holder){
-            is HeaderViewHolder -> {
+            is headerViewHolder -> {
 
                 holder.bind()
 
 
             }
-            is ItemViewHolder -> {
+            is itemViewHolder -> {
 //                리뷰 아이템 목록의 바인딩
                 holder.bind(mList[position-1])
             }

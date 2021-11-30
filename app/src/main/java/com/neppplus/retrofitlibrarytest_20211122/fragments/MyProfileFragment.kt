@@ -75,31 +75,31 @@ class MyProfileFragment : BaseFragment() {
 //                실제 첨부 데이터로 변경
                 val body = MultipartBody.Part.createFormData("profile_image", "myFile.jpg", fileReqBody)
 
-//                apiService.putRequestProfileImage(body).enqueue(object : Callback<BasicResponse> {
-//                    override fun onResponse(
-//                        call: Call<BasicResponse>,
-//                        response: Response<BasicResponse>
-//                    ) {
-//                        if (response.isSuccessful) {
-//                            Toast.makeText(mContext, "프로필 사진이 변경되었습니다.", Toast.LENGTH_SHORT).show()
-//
-////                            사용자가 선택한 사진 (selectedImageUri) 을 프로필사진 뷰에 반영
-//
-//                            Glide.with(mContext).load(selectedImageUri).into(binding.imgProfile)
-//
-//                        }
-//                        else {
-//                            Toast.makeText(mContext, "프로필 사진 변경에 실패했습니다.", Toast.LENGTH_SHORT).show()
-//
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-//
-//                    }
-//
-//
-//                })
+                apiService.putRequestProfileImage(body).enqueue(object : Callback<BasicResponse> {
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(mContext, "프로필 사진이 변경되었습니다.", Toast.LENGTH_SHORT).show()
+
+//                            사용자가 선택한 사진 (selectedImageUri) 을 프로필사진 뷰에 반영
+
+                            Glide.with(mContext).load(selectedImageUri).into(binding.imgProfile)
+
+                        }
+                        else {
+                            Toast.makeText(mContext, "프로필 사진 변경에 실패했습니다.", Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                    }
+
+
+                })
 
 
             }
