@@ -91,4 +91,11 @@ interface ServerAPIService {
     @Part img: MultipartBody.Part
     ):Callback<BasicResponse>
 
+    //    전체 배너 목록 가져오기
+
+    @GET("/banner")
+    fun getRequestBannerList():Call<BasicResponse>
+
+
+
 }
