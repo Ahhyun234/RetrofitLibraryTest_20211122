@@ -53,6 +53,14 @@ class MainActivity : BaseActivity() {
 
 
 //        2. 바텀 네비게이션 클릭 => 뷰페이저 페이지 이동 등
+        binding.mainBottomNavigationView.setOnItemReselectedListener {
+           when(it.itemId){
+               R.id.menuHome -> binding.mainViewPager.currentItem =0
+               R.id.menuRanking -> binding.mainViewPager.currentItem =1
+               R.id.menuMyProfile -> binding.mainViewPager.currentItem =2
+           }
+            return@setOnItemReselectedListener true
+        }
 
 
     }
