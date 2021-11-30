@@ -54,15 +54,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'com.google.code.gson:gson:2.8.6'
     // Normal
-    implementation 'io.github.ParkSangGwon:tedpermission-normal:x.y.z'
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
 
     // Coroutine
-    implementation 'io.github.ParkSangGwon:tedpermission-coroutine:x.y.z'
+    implementation 'io.github.ParkSangGwon:tedpermission-coroutine:3.3.0'
 
     // RxJava2
-    implementation 'io.github.ParkSangGwon:tedpermission-rx2:x.y.z'
+    implementation 'io.github.ParkSangGwon:tedpermission-rx2:3.3.0'
     // RxJava3
-    implementation 'io.github.ParkSangGwon:tedpermission-rx3:x.y.z'
+    implementation 'io.github.ParkSangGwon:tedpermission-rx3:3.3.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
