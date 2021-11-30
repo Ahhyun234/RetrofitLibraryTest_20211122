@@ -1,9 +1,11 @@
 package com.neppplus.retrofitlibrarytest_20211122.adapters
 
+import android.content.Context
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class MainRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //    두가지 뷰홀더가 필요함. -> 0번칸 : 상단부(header) xml / 나머지 칸(item) : 리뷰모양 XML
     inner class headerViewHolder(row:View): RecyclerView.ViewHolder(row){
 
@@ -11,5 +13,28 @@ class MainRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     inner class itemViewHolder(row: View): RecyclerView.ViewHolder(row){
 
     }
+
+    val HEADER_VIEW_TYPE =1000
+    val REVIEW_ITEM_TYPE =1001
+
+    override fun getItemViewType(position: Int): Int {
+
+//        position이 0 => 맨 윗칸
+//        position이 그위 => 리뷰 아이템
+        return when(position){
+            0->HEADER_VIEW_TYPE
+            else ->REVIEW_ITEM_TYPE
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+    }
+
+    override fun getItemCount()= mList.size +1
 
 }
