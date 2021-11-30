@@ -4,8 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HeaderViewListAdapter
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.neppplus.retrofitlibrarytest_20211122.GlobalApplication
 import com.neppplus.retrofitlibrarytest_20211122.R
+import com.neppplus.retrofitlibrarytest_20211122.datas.ReviewData
 
 class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //    두가지 뷰홀더가 필요함. -> 0번칸 : 상단부(header) xml / 나머지 칸(item) : 리뷰모양 XML
@@ -13,6 +19,16 @@ class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : Recy
 
     }
     inner class itemViewHolder(row: View): RecyclerView.ViewHolder(row){
+
+        val txtReviewproductName = row.findViewById<TextView>(R.id.txtReviewproductName)
+        val txtReviewWriterName = row.findViewById<TextView>(R.id.txtReviewWriterName)
+        val imgProductImage = row.findViewById<ImageView>(R.id.imgProductImage)
+
+        fun bind(data: ReviewData){
+            txtReviewWriterName.text = data.user.nickname
+            txtReviewproductName.text = data.product.name
+//            Glide.with(mContext).load()
+        }
 
     }
 
@@ -47,6 +63,17 @@ class MainRecyclerViewAdapter(val mContext : Context , val mList : List ) : Recy
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        when(holder){
+            is HeaderViewHolder -> {
+
+
+            }
+            is ItemViewHolder -> {
+//                리뷰 아이템 목록의 바인딩
+                holder.bind(mList[position-1])
+            }
+        }
 
     }
 
