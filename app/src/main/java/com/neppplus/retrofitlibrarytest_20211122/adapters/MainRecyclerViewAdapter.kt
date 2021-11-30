@@ -8,10 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.neppplus.retrofitlibrarytest_20211122.MainActivity
 import com.neppplus.retrofitlibrarytest_20211122.R
+import com.neppplus.retrofitlibrarytest_20211122.datas.BannerData
 import com.neppplus.retrofitlibrarytest_20211122.datas.ReviewData
 
 class MainRecyclerViewAdapter(val mContext : Context , val mList : List<ReviewData> ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+//    화면 상단에 보여줄 배너 목록을 담고있는 ArrayList만들기
+    val mBannerList = ArrayList<BannerData>()
+
 //    두가지 뷰홀더가 필요함. -> 0번칸 : 상단부(header) xml / 나머지 칸(item) : 리뷰모양 XML
     inner class headerViewHolder(row:View): RecyclerView.ViewHolder(row){
 
@@ -19,7 +25,14 @@ class MainRecyclerViewAdapter(val mContext : Context , val mList : List<ReviewDa
         val bannerViewPager = row.findViewById<ViewPager>(R.id.bannerViewPager)
 
     fun bind(){
-//        bannerViewPager.adapter =
+
+//       배너 페이지 어댑터 생성
+//        1. fm => 화면 =>supportFragmentManager
+//        2. 배너 리스트 => Fragment에서 배너 목록 API 호출 -> 파싱 된것을 받아오자
+
+        val bannerViewPagerAdapter = BannerViewPagerAdapter((mContext as MainActivity).supportFragmentManager, mBannerList)
+
+        bannerViewPager.adapter=bannerViewPagerAdapter
 
         imgCategory1.setOnClickListener {
 
