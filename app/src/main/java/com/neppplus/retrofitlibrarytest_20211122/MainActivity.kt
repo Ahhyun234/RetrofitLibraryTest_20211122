@@ -1,7 +1,10 @@
 package com.neppplus.retrofitlibrarytest_20211122
 
+import android.media.audiofx.BassBoost
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.viewpager.widget.ViewPager
+
 import com.neppplus.retrofitlibrarytest_20211122.adapters.MainViewPagerAdapter
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivityMainBinding
 
@@ -19,6 +22,38 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+//        1. view pager를 옮기면 바텀 네비게이션 클릭
+        binding.mainViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+//                손으로 옮기는 모든 순간 => 얼만큼 옮기는지도 확인 가능
+
+            }
+
+            override fun onPageSelected(position: Int) {
+
+//                페이지 선택이 완료되었을 때
+//                바텀 네비게이션바의 position에 맞는 메뉴를 클릭
+                binding.mainBottomNavigationView.menu.getItem(position).isChecked = true
+
+
+
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+//                가만히 있다가 움직이기 시작함
+
+            }
+
+        })
+
+
+//        2. 바텀 네비게이션 클릭 => 뷰페이저 페이지 이동 등
+
 
     }
 
