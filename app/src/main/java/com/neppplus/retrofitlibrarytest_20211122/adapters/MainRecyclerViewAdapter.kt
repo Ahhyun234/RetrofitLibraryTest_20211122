@@ -45,7 +45,20 @@ class MainRecyclerViewAdapter(val mContext : Context , val mList : List<ReviewDa
 
 //        완성된 배너 어댑터에 2초마다 자동으로 다음 그림으로 넘어가게
 //        >할일 코드 생성
-            val nextPage = {
+            var currentPage = 0 //시작은 0 페이지에서
+        
+            val nextPage = { //할 행동: 뷰페이저한테 다음  다음 배너로 넘어가게 함
+
+          
+                currentPage++
+                
+                if (currentPage ==mBannerList.size){
+//                    가야할 페이지가 마지막이라면 처음으로 돌아가게 하자
+                    currentPage = 0
+                }
+                bannerViewPager.currentItem = currentPage
+
+
 
             } //Runnable (할일이 담긴 코드)
 
