@@ -1,6 +1,7 @@
 package com.neppplus.retrofitlibrarytest_20211122
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.coroutine.TedPermission
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivityEditReviewBinding
@@ -29,6 +31,8 @@ class EditReviewActivity : BaseActivity() {
     val mInputTagList = ArrayList<String>()
 //    대표 사진을 가지러 간다
     val REQ_FOR_GALLERY = 1004
+//    선택한 이미지의 URI를 담아줄 변수
+    var mSelectedThubnailUri : Uri? =null //처음에는 선택한 이미지가 없다
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -159,4 +163,23 @@ class EditReviewActivity : BaseActivity() {
         binding.txtToday.text = nowString
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQ_FOR_GALLERY){
+            if (resultCode == RESULT_OK){
+//                첨부한 이미지(data.data) uri 를 저장 -> 업로드 시에 첨부
+
+                mSelectedThubnailUri = data!!.data
+
+//                선택한 이미지를 이미지 뷰에 표시
+                Glide.with(mContext).load(mSelectedThubnailUri).into(binding.imgSelected)
+//                선택 유도 문구 숨김 & 선택한 이미지뷰 표시
+                binding.txtEmptyImg.visibility = View.GONE
+                binding.imgSelected.visibility = View.VISIBLE
+            }
+        }
+    }
+
 }
