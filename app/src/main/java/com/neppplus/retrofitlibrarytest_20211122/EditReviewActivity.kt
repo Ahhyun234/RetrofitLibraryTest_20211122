@@ -126,7 +126,11 @@ class EditReviewActivity : BaseActivity() {
 //            선택한 사진 첨부
 
 
-//            선택한 사진 추출
+//            선택한 사진 추출 => mSelectedThumbnailUri 에 담겨있다
+            if (mSelectedThubnailUri==null){
+                Toast.makeText(mContext, "첨부하세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
 
 
