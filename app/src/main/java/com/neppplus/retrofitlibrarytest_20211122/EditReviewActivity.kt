@@ -145,10 +145,18 @@ class EditReviewActivity : BaseActivity() {
             val productScoreBody = RequestBody.create(MediaType.parse("text/plain"),rating.toString())
             val productTagListBody = RequestBody.create(MediaType.parse("text/plain"),tagStr)
 
+            val params = HashMap<String, RequestBody>()
+            params.put("product_id",productIdBody)
+            params.put("title",productTitleBody)
+            params.put("content",productContentBody)
+            params.put("score",productScoreBody)
+            params.put("tag_list",productTagListBody)
+
 
 
             apiService.postRequestReview(
 //                1. 일반
+                params,
 //                2. 이미지 등 파일 : MultyPart.part
 
             ).enqueue(object :Callback<BasicResponse>{
