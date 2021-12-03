@@ -56,9 +56,6 @@ class ProductRecyclerViewAdapter(val mContext:Context,val mList:List<ProductData
                 mContext.startActivity(myIntent)
 
 
-
-
-
             }
         }
 

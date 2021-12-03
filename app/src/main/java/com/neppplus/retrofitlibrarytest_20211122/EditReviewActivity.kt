@@ -1,11 +1,16 @@
 package com.neppplus.retrofitlibrarytest_20211122
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.coroutine.TedPermission
 import com.neppplus.retrofitlibrarytest_20211122.databinding.ActivityEditReviewBinding
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.datas.ProductData
@@ -22,6 +27,8 @@ class EditReviewActivity : BaseActivity() {
     lateinit var binding: ActivityEditReviewBinding
     lateinit var mProductData : ProductData
     val mInputTagList = ArrayList<String>()
+//    대표 사진을 가지러 간다
+    val REQ_FOR_GALLERY = 1004
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +39,29 @@ class EditReviewActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        val ocl = View.OnClickListener {
+//            권한쳌크
+
+            val pl = object : PermissionListener{
+                override fun onPermissionGranted() {
+//                    권한이 있을 때 -> 사진을 가지러 이동
+                    val myIntent = Intent()
+                    myIntent.action = Intent.ACTION_PICK
+                    myIntent.type = android.provider.MediaStore.Images.Media.CONTENT_TYPE
+                    startActivityForResult( myIntent, REQ_FOR_GALLERY )
+
+                }
+
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                    Toast.makeText(mContext, "갤러리 권한이 없습니다.", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            TedPermission.create()
+                .setPermissionListener(pl).setPermissions(Menifest.permission.READ_EXTERNAL_STORAGE).check()
+        }
+        binding.txtEmptyImg.setOnClickListener(ocl)
 
 //        한글자를 입력할 때 마다, 스페이스를 넣었는지 검사
 
@@ -84,6 +114,17 @@ class EditReviewActivity : BaseActivity() {
 
             val rating = binding.ratingBar.rating.toInt()
             Log.d("평점 점수", rating.toString())
+
+
+//           태그 임시
+            val tagStr = ""
+
+//            선택한 사진 첨부
+
+
+//            선택한 사진 추출
+
+
 
             apiService.postRequestReview(mProductData.id,inputTitle,inputContent,rating).enqueue(object :Callback<BasicResponse>{
                 override fun onResponse(

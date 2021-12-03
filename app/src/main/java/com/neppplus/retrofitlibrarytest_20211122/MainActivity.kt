@@ -25,6 +25,7 @@ class MainActivity : BaseActivity() {
 
 //        1. view pager를 옮기면 바텀 네비게이션 클릭
         binding.mainViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,

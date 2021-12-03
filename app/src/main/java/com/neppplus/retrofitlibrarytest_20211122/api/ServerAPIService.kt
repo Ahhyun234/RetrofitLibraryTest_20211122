@@ -96,6 +96,15 @@ interface ServerAPIService {
     @GET("/banner")
     fun getRequestBannerList():Call<BasicResponse>
 
+//    대분류 내부의 소분류 가져오기
+
+    @GET("/category/{large_category_id}")
+    fun getRequestSmallCategoryDependOnLarge(
+        @Path("large_category_id") id:Int,
+    ): Call<BasicResponse>
+
+
+
 
 
 }
