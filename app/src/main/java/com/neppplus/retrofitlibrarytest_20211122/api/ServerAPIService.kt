@@ -3,6 +3,7 @@ package com.neppplus.retrofitlibrarytest_20211122.api
 import com.neppplus.retrofitlibrarytest_20211122.datas.BasicResponse
 import com.neppplus.retrofitlibrarytest_20211122.datas.ProductData
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
@@ -70,14 +71,21 @@ interface ServerAPIService {
     ): Call<BasicResponse>
 
 //    리뷰 작성
-    @FormUrlEncoded
+//    @FormUrlEncoded
+//    @POST("/review")
+//    fun postRequestReview(
+//    @Field("product_id") productData: Int,
+//    @Field("title") title : String,
+//    @Field("content") content : String,
+//    @Field("score") rating : Int
+//    ) : Call<BasicResponse>
+
+    @Multipart
     @POST("/review")
     fun postRequestReview(
-    @Field("product_id") productData: Int,
-    @Field("title") title : String,
-    @Field("content") content : String,
-    @Field("score") rating : Int
-    ) : Call<BasicResponse>
+        @PartMap normalParams: HashMap< String, RequestBody >, //id, 제목, 내용, 등등 일반적인 문구 파라미터를 담을 공간
+        @Part img: MultipartBody.Part, //이미지를 별도로 첨부 할 변수
+        ): Callback<BasicResponse>
 
 //    전체 리뷰 목록 가져오기
 
